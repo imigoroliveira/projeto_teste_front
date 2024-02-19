@@ -13,14 +13,14 @@ const Produtos = () => {
     }, []);
 
     const fetchProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:8000/api/produtos/listar');
-            setProducts(response.data);
-        } catch (error) {
-            console.error('Failed to fetch products:', error);
-        }
-    };
-
+      try {
+          const response = await axios.get('http://localhost:8000/api/produtos/listar');
+          setProducts(response.data);
+          console.log(response);
+      } catch (error) {
+          console.error('Failed to fetch products:', error);
+      }
+  };
     const handleAddProduct = () => {
         setShowAddModal(true);
     };
@@ -44,7 +44,7 @@ const Produtos = () => {
         const newProduct = { name: name.value };
 
         try {
-            await axios.post('https://your-api-url/products', newProduct);
+            await axios.post('https://your-api-url/produto/criar/', newProduct);
             fetchProducts();
             setShowAddModal(false);
         } catch (error) {
@@ -68,16 +68,16 @@ const Produtos = () => {
 
     return (
         <div>
-            <h1>Product Management</h1>
-            <Button variant="primary" onClick={handleAddProduct}>Add Product</Button>
+            <h1>Produtos</h1>
+            <Button variant="primary" onClick={handleAddProduct}>Adicionar Produto</Button>
             <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Actions</th>
+                        <th>Nome</th>
+                        <th>Creado em:</th>
+                        <th>Atualizado em:</th>
+                        <th>Ações:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,7 +88,7 @@ const Produtos = () => {
                             <td>{product.created_at}</td>
                             <td>{product.updated_at}</td>
                             <td>
-                                <Button variant="info" onClick={() => handleEditProduct(product)}>Edit</Button>
+                                <Button variant="info" onClick={() => handleEditProduct(product)}>Editar</Button>
                             </td>
                         </tr>
                     ))}
@@ -102,25 +102,25 @@ const Produtos = () => {
                 <Modal.Body>
                     <Form onSubmit={handleSaveProduct}>
                         <Form.Group controlId="name">
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label>Nome:</Form.Label>
                             <Form.Control type="text" placeholder="Enter name" />
                         </Form.Group>
-                        <Button variant="primary" type="submit">Save</Button>
+                        <Button variant="primary" type="submit">Salvar</Button>
                     </Form>
                 </Modal.Body>
             </Modal>
 
             <Modal show={showEditModal} onHide={handleCloseEditModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Product</Modal.Title>
+                    <Modal.Title>Editar Produto:</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleUpdateProduct}>
                         <Form.Group controlId="name">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter name" defaultValue={selectedProduct.name} />
+                            <Form.Label>Nome:</Form.Label>
+                            <Form.Control type="text" placeholder="Inserir nome" defaultValue={selectedProduct.name} />
                         </Form.Group>
-                        <Button variant="primary" type="submit">Save</Button>
+                        <Button variant="primary" type="submit">Salvar</Button>
                     </Form>
                 </Modal.Body>
             </Modal>
