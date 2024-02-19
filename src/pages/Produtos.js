@@ -44,7 +44,7 @@ const Produtos = () => {
         const newProduct = { name: name.value };
 
         try {
-            await axios.post('https://your-api-url/produto/criar/', newProduct);
+            await axios.post('https://localhost:8000/produtos/criar/', newProduct);
             fetchProducts();
             setShowAddModal(false);
         } catch (error) {
@@ -58,7 +58,7 @@ const Produtos = () => {
         const updatedProduct = { ...selectedProduct, name: name.value };
 
         try {
-            await axios.put(`https://your-api-url/products/${selectedProduct.id}`, updatedProduct);
+            await axios.put(`https://localhost:8000/produtos/${selectedProduct.id}`, updatedProduct);
             fetchProducts();
             setShowEditModal(false);
         } catch (error) {
@@ -67,7 +67,7 @@ const Produtos = () => {
     };
 
     return (
-        <div>
+        <div style={{ width: '70%', margin: '0 auto', marginTop: '100px' }}>
             <h1>Produtos</h1>
             <Button variant="primary" onClick={handleAddProduct}>Adicionar Produto</Button>
             <Table striped bordered hover>
