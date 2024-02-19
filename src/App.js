@@ -1,13 +1,19 @@
-import './App.css';
-import Home from './pages/Home'; 
+import React from 'react';
+import Layout from './components/layout/layout';
+import Home from './pages/Home';
+import Produtos from './pages/Produtos';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-
-      <Home /> 
-    </div>
+    <>
+      <Layout>
+        <Home />
+      </Layout>
+      <Layout>
+        <Produtos />
+      </Layout>
+    </>
   );
-}
+};
 
 export default App;

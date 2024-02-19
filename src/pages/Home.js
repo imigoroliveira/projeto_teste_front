@@ -10,4 +10,4 @@ function Home() {
   );
 }
 
-export default Home; // Certifique-se de exportar o componente corretamente
+export default Home;

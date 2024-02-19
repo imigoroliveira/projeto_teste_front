@@ -1,14 +1,24 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Layout from './components/layout/layout';
 import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import Produtos from './pages/Produtos';
 
-const AppRoutes = () => (
-  <Routes>
-    <Route path="/home" element={<Home/>} />
-    <Route  Component={<NotFound/>} />
+const Routes = () => {
+  return (
+    <>
+      <Route exact path="/">
+        <Layout>
+          <Home />
+        </Layout>
+      </Route>
+      <Route path="/produtos">
+        <Layout>
+          <Produtos />
+        </Layout>
+      </Route>
+    </>
+  );
+};
 
-  </Routes>
-);
-
-export default AppRoutes;
+export default Routes;
