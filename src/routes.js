@@ -1,24 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Layout from './components/layout/layout';
+import { BrowserRouter as Route } from 'react-router-dom';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import Produtos from './pages/Produtos';
 
-const Routes = () => {
-  return (
-    <>
-      <Route exact path="/">
-        <Layout>
-          <Home />
-        </Layout>
-      </Route>
-      <Route path="/produtos">
-        <Layout>
-          <Produtos />
-        </Layout>
-      </Route>
-    </>
-  );
-};
+const Routes = () => (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/produtos" element={<Produtos />} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
 
 export default Routes;

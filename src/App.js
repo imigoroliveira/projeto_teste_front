@@ -1,17 +1,19 @@
 import React from 'react';
-import Layout from './components/layout/layout';
 import Home from './pages/Home';
 import Produtos from './pages/Produtos';
+import { Route, Routes } from 'react-router-dom';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 const App = () => {
   return (
     <>
-      <Layout>
-        <Home />
-      </Layout>
-      <Layout>
-        <Produtos />
-      </Layout>
+      <Header />
+      <Routes>
+        <Route path='/produtos' element={<Produtos />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Footer />
     </>
   );
 };
